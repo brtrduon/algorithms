@@ -5,30 +5,32 @@
 
 export const steps = (n) => {
   let numOfStepsToOne = 0
-  
-  if (n % 2 === 0 && n > 1) {
-    // while (n !== 0) {
-    //   if (n % 2 === 0) {
-    //     n / 2
-    //     numOfStepsToOne++
-    //   }
-    // }
 
-    // return numOfStepsToOne
-  }
-
-  else if (n % 2 !== 0 && n > 1) {
-    numOfStepsToOne++
-    // need to do recursion
+  if (n <= 0) {
+    throw new Error('Only positive numbers are allowed')
   }
 
   else if (n === 1) {
     return numOfStepsToOne
   }
 
-  else if (n <= 0) {
-    throw new Error('Only positive numbers are allowed')
-  }
+  else {
+    while (n > 0) {
+      if (n === 1) {
+        break
+      }
 
-  
+      else if (n % 2 === 0) {
+        n = n / 2
+        numOfStepsToOne++
+      }
+
+      else if (n % 2 !== 0) {
+        n = 3 * n + 1
+        numOfStepsToOne++
+      }
+    }
+
+    return numOfStepsToOne
+  }
 };
