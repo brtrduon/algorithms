@@ -3,7 +3,7 @@ import { Words } from './word-count';
 describe('words()', () => {
   const words = new Words();
 
-  xtest('counts one word', () => {
+  test('counts one word', () => {
     const expectedCounts = { word: 1 };
     expect(words.count('word')).toEqual(expectedCounts);
   });
@@ -13,31 +13,31 @@ describe('words()', () => {
     expect(words.count('one of each')).toEqual(expectedCounts);
   });
 
-  xtest('counts multiple occurrences', () => {
+  test('counts multiple occurrences', () => {
     const expectedCounts = {
       one: 1, fish: 4, two: 1, red: 1, blue: 1,
     };
     expect(words.count('one fish two fish red fish blue fish')).toEqual(expectedCounts);
   });
 
-  xtest('includes punctuation', () => {
+  test('includes punctuation', () => {
     const expectedCounts = {
       car: 1, ':': 2, carpet: 1, as: 1, java: 1, 'javascript!!&@$%^&': 1,
     };
     expect(words.count('car : carpet as java : javascript!!&@$%^&')).toEqual(expectedCounts);
   });
 
-  xtest('includes numbers', () => {
+  test('includes numbers', () => {
     const expectedCounts = { testing: 2, 1: 1, 2: 1 };
     expect(words.count('testing 1 2 testing')).toEqual(expectedCounts);
   });
 
-  xtest('normalizes to lower case', () => {
+  test('normalizes to lower case', () => {
     const expectedCounts = { go: 3 };
     expect(words.count('go Go GO')).toEqual(expectedCounts);
   });
 
-  xtest('counts properly international characters', () => {
+  test('counts properly international characters', () => {
     const expectedCounts = {
       '¡hola!': 1, '¿qué': 1, 'tal?': 1, 'привет!': 1,
     };
@@ -64,7 +64,7 @@ describe('words()', () => {
     expect(words.count('\t\tIntroductory Course      ')).toEqual(expectedCounts);
   });
 
-  xtest('handles properties that exist on Object’s prototype', () => {
+  test('handles properties that exist on Object’s prototype', () => {
     const expectedCounts = {
       reserved: 1, words: 1, like: 1, constructor: 1, and: 1, tostring: 1, 'ok?': 1,
     };
