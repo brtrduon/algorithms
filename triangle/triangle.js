@@ -2,12 +2,11 @@
 // This is only a SKELETON file for the 'Triangle' exercise. It's been provided as a
 // convenience to get you started writing code faster.
 //
-
 export class Triangle {
-  constructor(l1, l2, l3) {
-    this.l1 = l1
-    this.l2 = l2
-    this.l3 = l3
+  constructor(side1, side2, side3) {
+    this.l1 = side1
+    this.l2 = side2
+    this.l3 = side3
   }
 
   kind() {

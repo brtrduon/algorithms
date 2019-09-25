@@ -5,7 +5,7 @@
 
 export class Words {
   count(phrase) {
-    let phraseArr = phrase.toLowerCase().split(' ')
+    let phraseArr = phrase.toLowerCase().split(/\s+/).filter(Boolean);
     let phraseMap = {}
 
     // build out map
@@ -14,12 +14,15 @@ export class Words {
     }
 
     // increase val of key by one if key matches word in phraseArr
-    for (let j in phraseMap) {
-      for (let k of phraseArr) {
-        if (k === j) {
-          phraseMap[j]++
-        }
-      }
+    // for (let j in phraseMap) {
+    //   for (let k of phraseArr) {
+    //     if (k === j) {
+    //       phraseMap[j]++
+    //     }
+    //   }
+    // }
+    for (let word of phraseArr) {
+      ++phraseMap[word];
     }
 
     return phraseMap
