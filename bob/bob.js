@@ -5,17 +5,24 @@
 //
 
 export const hey = (message) => {
-  // if (message[message.length - 1] === '?') {
-    
-  // }
+  message = message.trim();
+  const alphaRegex = /[a-z]/i
+  const mLen = message.length;
+  const lastChar = message[mLen - 1];
 
-  if (message === message.toUpperCase()) {
+  if(message === "") {
+    return 'Fine. Be that way!'
+  }
+
+  else if (message === message.toUpperCase() && message.match(alphaRegex)) {
+    if(lastChar === "?") return ('Calm down, I know what I\'m doing!')
+
     return 'Whoa, chill out!'
   }
 
-  // else if (message === ' ' || message === null) {
-  //   return 'Fine. Be that way!'
-  // }
+  else if (lastChar === '?') {
+    return 'Sure.'
+  }
 
   else {
     return 'Whatever.'
