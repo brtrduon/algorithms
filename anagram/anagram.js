@@ -5,16 +5,26 @@
 
 export class Anagram {
   constructor(word) {
-    this.word = word
+    this.subject = word.toLowerCase();
   }
 
   matches(arr) {
-    for (let i of arr) {
-      if (i.split('').sort() !== this.word.split('').sort()) {
-        arr.shift()
+    const lArr = arr.map(word => word.toLowerCase());
+    let aSubject = this.subject.split('').sort().join('')
+    let resArr = []
+
+    for (let word of arr) {
+      let lWord = word.toLowerCase();
+
+      let dups = 0;
+      for(let oWord of lArr) {
+        if(lWord === oWord) ++dups;
+      }
+      if (dups === 1 && lWord.split('').sort().join('') === aSubject) {
+        resArr.push(word)
       }
     }
 
-    return arr
+    return resArr
   }
 }
