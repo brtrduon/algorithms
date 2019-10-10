@@ -4,7 +4,7 @@
 //
 
 export class LinkedList {
-  push(n) {
+  push(val) {
     
   }
 
