@@ -4,92 +4,50 @@
 //
 
 export const encode = (str) => {
-  let newStr = ''
+  let strBuilder = [];
+  const lastI = str.length;
 
   if (str.length === 0) {
-    return newStr
+    return ''
   }
 
   else {
-    let runner = 1
-
-    for (let i = 1; i <= str.length; i++) {
-      if (str[i - 1] === str[i]) {
+    for (let i = 0, runner = 1; i < lastI; i++) {
+      if (str[i] === str[i + 1]) {
         runner++
-      }
-
-      else {
+      } else {
         if (runner === 1) {
-          newStr += str[i - 1]
-        }
-
-        else {
-          newStr += runner + str[i - 1]
+          strBuilder.push(str[i]);
+        } else {
+          strBuilder.push(runner + str[i]);
           runner = 1
         }
       }
     }
     
-    return newStr
+    return strBuilder.join('');
   }
 };
 
 export const decode = (str) => {
-  let newStr = ''
+  const strLength = str.length,
+    nums = str.match(/[0-9]+/g),
+    numRegex = /[0-9]/;
 
-  if (str.length === 0) {
-    return newStr
+  let strBuilder = [];
+
+  if (str.length === 0)
+    return '';
+  
+  for(let i = 0, numI = 0; i < strLength; ++i) {
+    if(str[i].match(numRegex)) {
+      i += nums[numI].length;
+      strBuilder.push(str[i].repeat(parseInt(nums[numI])))
+      ++numI;
+    } else {
+      strBuilder.push(str[i])
+    }
   }
 
-  else {
-    let numRegex = /[0-9]/
-    let num = 0
-
-    if (!str[0].match(numRegex)) {
-      for (let i of str){
-        newStr += i
-      }
-
-      return newStr
-    }
-
-    else {
-      for (let i = 1; i < str.length; i++) {
-        if (str[i - 1].match(numRegex) && !str[i].match(numRegex)) {
-          if (num === 0) {
-            num = parseInt(str[i-1])
-    
-            for (let j = 0; j < num; j++) {
-              newStr += str[i]
-            }
-    
-            num = 0
-          }
-  
-          else {
-            for (let j = 0; j < num; j++) {
-              newStr += str[i]
-            }
-    
-            num = 0
-          }
-        }
-  
-        else if (str[i - 1].match(numRegex) && str[i].match(numRegex)) {
-          num = parseInt(str[i - 1] + str[i])
-        }
-  
-        else if (!str[i - 1].match(numRegex) && str[i].match(numRegex)) {
-          continue
-        }
-  
-        else {
-          newStr += str[i]
-        }
-      }
-    }
-
-
-    return newStr
-  }
+  return strBuilder.join('')
 };
