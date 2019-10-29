@@ -31,7 +31,13 @@ export class LinkedList {
   }
 
   pop() {
-    
+    if (!this.head) {
+      null
+    }
+
+    else {
+      
+    }
   }
 
   shift() {
