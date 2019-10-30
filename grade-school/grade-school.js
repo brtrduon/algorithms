@@ -4,34 +4,35 @@
 //
 
 export class GradeSchool {
-
   constructor() {
-    this.students = {};
+    this.private = new WeakMap();
+    this.private.set(this, {
+      students: {}
+    });
   }
 
   roster() {
-    return this.students;
+    const students = JSON.parse(JSON.stringify(this.private.get(this).students));
+    return students;
   }
 
   add(name, grade) {
-    if(this.students[grade]) {
-      this.students[grade].push(name);
+    let students = this.private.get(this).students;
+    if(students[grade]) {
+      students[grade].push(name);
     } else {
-      this.students[grade] = [name];
+      students[grade] = [name];
     }
 
-    this.students[grade].sort()
+    students[grade].sort() 
   }
 
   grade(index) {
-    if (!this.students[index]) {
+    let students = JSON.parse(JSON.stringify(this.private.get(this).students));
+    if (!students[index]) {
       return []
-    }
-
-    else {
-      return this.students[index].sort();
+    } else {
+      return students[index].sort();
     }
   }
 }
-
-
