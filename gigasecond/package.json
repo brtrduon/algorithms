@@ -18,7 +18,7 @@
     "eslint": "^6.1.0",
     "eslint-plugin-import": "^2.18.2",
     "jest": "^24.8.0",
-    "moment": "^2.24.0"
+    "moment": "^2.29.2"
   },
   "jest": {
     "modulePathIgnorePatterns": [
